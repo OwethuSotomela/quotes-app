@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/quotes-app/assets/favicon.17e50649.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+  <title>Vite App</title>
+  <script type="module" crossorigin src="/quotes-app/assets/index.7c268184.js"></script>
+  <link rel="stylesheet" href="/quotes-app/assets/index.be8c6a22.css">
+</head>
+
+<body>
+  <div id="app"></div>
+  <div x-data="isOpen" class="isOpen">
+    <!-- <span x-text="feedback">Feedback</span> -->
+    <span x-text="token"></span>
+    <div x-show="appState == 'REGISTER'" class="register">
+      <label>Username</label>
+      <input type="text" x-model="user.username" placeholder="Create a username">
+      <label>Password</label>
+      <input type="text" x-model="user.password" placeholder="Enter your password">
+      <button @click="register()" class="regBtn">Register</button>
+      <a href="#" @click="gotToLogin()">Already have an account? Login</a>
+
+    </div>
+
+    <div x-show="appState == 'LOGIN'" class="login">
+      <label>Username</label>
+      <input type="text" x-model="dbUser.username" placeholder="Enter your username">
+      <label>Password</label>
+      <input type="text" x-model="dbUser.password" placeholder="Enter your password">
+      <button @click="logMeIn()" class="loginBtn">Login</button>
+      <a href="#" @click="gotToRegister()">Don't have account? Register</a>
+    </div>
+    <hr>
+
+    <div x-show="appState =='HOME'" class="isLoveApp">
+      <div x-data="loveCounter">
+        <h1>Show some heart</h1>
+        <div x-text="hearts()">
+        </div>
+        <div>
+          <button @click="getLoveCount()">Show 💟</button>
+          <span x-text="user.love_count"></span>
+        </div>
+      </div>
+      <hr>
+      <div x-data="quoteApp" class="quoteApp">
+        <h1>Quote App</h1>
+        <button @click="getQuote()">Next quote 📢</button>
+        <div class="quote">
+          <div x-text="quote.quote" class="content"></div>
+          <div>
+            <strong>by </strong><span x-text="quote.author"></span>
+          </div>
+        </div>
+      </div>
+      <button @click="logout()" class="logoutBtn">Logout</button>
+    </div>
+
+  </div>
+
+
+  
+</body>
+
+</html>
